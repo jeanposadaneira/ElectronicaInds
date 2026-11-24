@@ -1,0 +1,71 @@
+Function main
+Integer i
+Integer j
+Real espesor
+
+Print "Hola robot"
+Motor On
+Power High
+Accel 50, 50
+Speed 10
+
+Home
+
+espesor = 2.8
+
+P1 = P0 +Y(50)
+P2 = P0 -X(50)
+
+P10 = P0 +Y(50)
+P11 = P0 -X(100)
+P12 = P10 -X(150)
+
+P20 = P10 +Y(50)
+P21 = P10 -X(100)
+P22 = P20 -X(100)
+
+Pallet 0, P0, P2, P1, 3, 3
+Pallet 1, P12, P10, P11, 1, 3
+Pallet 2, P22, P21, P20, 1, 3
+
+Salto1:
+
+If Sw(8) = True Then
+
+For i = 1 To 9
+For j = 1 To 3
+Go Pallet(0, i)
+
+On 9
+Wait 0.5
+
+Go Pallet(2, j)
+
+Off 9
+Wait 0.5
+Next
+Next
+
+Else
+
+For i = 1 To 9
+For j = 1 To 3
+Go Pallet(0, i)
+
+On 9
+Wait 0.5
+
+Go Pallet(1, j)
+
+Off 9
+Wait 0.5
+
+Next
+Next
+
+EndIf
+
+Home
+GoTo Salto1
+
+Fend
